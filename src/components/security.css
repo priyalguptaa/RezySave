@@ -1,13 +1,11 @@
-#list{
-    margin-top: 1rem;
-display: flex;
-justify-content: center;
+#list {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
 }
 
-#box{
-   
-border-radius: 0.5rem;
-border-width: 0.4px;
-border-color:red;
+#box {
+  border-radius: 0.5rem;
+  border-width: 0.4px;
+  border-color: red;
 }
-

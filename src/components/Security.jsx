@@ -36,8 +36,11 @@ const Security = () => {
           </div>
         </AccordionSummary>
         <AccordionDetails>
-        <div id="mainContainer" className="flex lg:flex-row flex-col gap-2">
-            <div id="footageContainer" className="md:w-[100%] lg:w-[50%] sm:w-[100%]">
+          <div id="mainContainer" className="flex lg:flex-row flex-col gap-2">
+            <div
+              id="footageContainer"
+              className="md:w-[100%] lg:w-[50%] sm:w-[100%]"
+            >
               <div
                 id="navbar"
                 className="w-[100%] h-[3rem] bg-blue rounded-lg  flex items-center"
@@ -113,24 +116,16 @@ const Security = () => {
                   </div>
                 </div>
 
-                {/* pagination */}
                 <div className="flex mt-4" style={{ order: 2 }}>
-                  {/* Previous page button */}
-
-                  {/* Page number */}
                   {currentPage == 1 ? (
                     <div className="mx-1 px-2 py-1 ">{`Showing ${
                       Insights.slice(startIndex, endIndex).length + 1
                     } of ${Insights.length + 1} items`}</div>
-                  )
-                :
-                (
-                  <div className="mx-1 px-2 py-1 ">{`Showing ${
-                    Insights.slice(startIndex, endIndex).length 
-                  } of ${Insights.length + 1} items`}</div>
-                )
-                }
-                  
+                  ) : (
+                    <div className="mx-1 px-2 py-1 ">{`Showing ${
+                      Insights.slice(startIndex, endIndex).length
+                    } of ${Insights.length + 1} items`}</div>
+                  )}
 
                   <div className="flex flex-row gap-1 items-center">
                     <button
@@ -164,12 +159,18 @@ const Security = () => {
                       key={insight.id}
                       className="h-[7.4rem] w-[99%] rounded-lg flex"
                       style={{
-                        backgroundColor: (index == 0) ? "rgba(255, 199, 196, 1)" : "rgba(255, 235, 204, 1)"
-                    }}
-                    
+                        backgroundColor:
+                          index == 0
+                            ? "rgba(255, 199, 196, 1)"
+                            : "rgba(255, 235, 204, 1)",
+                      }}
                     >
                       <div id="mainlistholder" className="flex flex-col">
-                        <div id="datetime" className="flex flex-row gap-2" style={{padding: '10px'}}>
+                        <div
+                          id="datetime"
+                          className="flex flex-row gap-2"
+                          style={{ padding: "10px" }}
+                        >
                           <div>
                             <svg
                               className="h-6 w-6"
@@ -182,7 +183,9 @@ const Security = () => {
                           <div>{insight.date}</div>
                           <div>{insight.time}</div>
                         </div>
-                        <div  style={{marginLeft: '12px'}}>{insight.description}</div>
+                        <div style={{ marginLeft: "12px" }}>
+                          {insight.description}
+                        </div>
                       </div>
                     </li>
                   </>

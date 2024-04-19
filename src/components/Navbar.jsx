@@ -9,11 +9,11 @@ import Badge from "@mui/material/Badge";
 import SearchIcon from "@mui/icons-material/Search";
 import MarkChatUnreadIcon from "@mui/icons-material/MarkChatUnread";
 import NotificationsIcon from "@mui/icons-material/Notifications";
-import HomeIcon from '@mui/icons-material/Home';
+import HomeIcon from "@mui/icons-material/Home";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
-  
+
   borderRadius: theme.shape.borderRadius,
   backgroundColor: alpha(theme.palette.common.white, 0.15),
   "&:hover": {
@@ -50,13 +50,20 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     },
   },
 }));
-
 export default function Navbar() {
-  const isSmallScreen = window.innerWidth < 768; 
-
+  const isSmallScreen = window.innerWidth < 768;
   return (
-<Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static" style={{backgroundColor:'darkblue', fontFamily: "Roboto, Helvetica, Arial, sans-serif",position:'fixed',top:0,height:'60px'}}>
+    <Box sx={{ flexGrow: 1 }}>
+      <AppBar
+        position="static"
+        style={{
+          backgroundColor: "darkblue",
+          fontFamily: "Roboto, Helvetica, Arial, sans-serif",
+          position: "fixed",
+          top: 0,
+          height: "60px",
+        }}
+      >
         <Toolbar>
           <IconButton
             size="large"
@@ -71,39 +78,49 @@ export default function Navbar() {
             variant="h6"
             noWrap
             component="div"
-            sx={{ display: "flex" }} // Updated display condition
+            sx={{ display: "flex" }}
           >
             Home
           </Typography>
-
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: "flex", md: "flex" } }}>
-            
-          {isSmallScreen ? (
-      <div className="relative">
-      <input type="text" placeholder="Search..." className="pl-8 pr-4 py-2 rounded-full border border-gray-300 focus:outline-none focus:border-blue-500" />
-      <svg className="absolute left-2 top-1/2 transform -translate-y-1/2 text-gray-500 h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-5.2-5.2m-.8-.8a8 8 0 10-4.8 4.8M15 9a6 6 0 11-12 0 6 6 0 0112 0z"></path>
-      </svg>
-    </div>
-    
-      ) : (
-        <Search>
-          <SearchIconWrapper>
-            <SearchIcon />
-          </SearchIconWrapper>
-          <StyledInputBase
-            placeholder="Search…"
-            inputProps={{ "aria-label": "search" }}
-          />
-        </Search>
-      )}
+            {isSmallScreen ? (
+              <div className="relative">
+                <input
+                  type="text"
+                  placeholder="Search..."
+                  className="pl-8 pr-4 py-2 rounded-full border border-gray-300 focus:outline-none focus:border-blue-500"
+                />
+                <svg
+                  className="absolute left-2 top-1/2 transform -translate-y-1/2 text-gray-500 h-5 w-5"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M21 21l-5.2-5.2m-.8-.8a8 8 0 10-4.8 4.8M15 9a6 6 0 11-12 0 6 6 0 0112 0z"
+                  ></path>
+                </svg>
+              </div>
+            ) : (
+              <Search>
+                <SearchIconWrapper>
+                  <SearchIcon />
+                </SearchIconWrapper>
+                <StyledInputBase
+                  placeholder="Search…"
+                  inputProps={{ "aria-label": "search" }}
+                />
+              </Search>
+            )}
             <IconButton size="medium" color="inherit">
               <Badge color="error">
                 <MarkChatUnreadIcon />
               </Badge>
             </IconButton>
-
             <IconButton size="medium" color="inherit">
               <Badge
                 overlap="circular"

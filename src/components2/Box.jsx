@@ -198,7 +198,6 @@ const Box = ({ selectedTab, sampleData }) => {
     >
       {sampleData.map((item, index) => {
         const { buttonText, buttonStyle } = getButtonTextAndStyle(item);
-        // debugger
 
         return (
           <div

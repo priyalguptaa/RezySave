@@ -6,14 +6,10 @@ import NewComponent from "./components/NewComponent";
 function App() {
   return (
     <>
-     <Navbar />
+      <Navbar />
       <div id="container" className="bg-gray-100 h-[100vh] relative top-[60px]">
-      
-       
         <NewComponent />
         <Security />
-        
-      
       </div>
     </>
   );

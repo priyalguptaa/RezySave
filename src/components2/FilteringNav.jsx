@@ -1,14 +1,14 @@
-import  { useState } from "react";
+import { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { IconButton, Button } from "@material-ui/core";
-import scriptImage from '../assets/Images/script.jpg';
+import scriptImage from "../assets/Images/script.jpg";
 
 const useStyles = makeStyles(() => ({
   filteringContainer: {
-    marginLeft: '17px',
-    marginRight: '17px',
+    marginLeft: "17px",
+    marginRight: "17px",
     backgroundColor: "#f0f0f0",
-    padding: "16px"
+    padding: "16px",
   },
   navbar: {
     display: "flex",
@@ -40,7 +40,7 @@ function FilteringNav({ selectedTab }) {
   const classes = useStyles();
 
   const [currentPage, setCurrentPage] = useState(1);
-  const totalPages = 7; 
+  const totalPages = 7;
 
   const handlePreviousPage = () => {
     setCurrentPage((prevPage) => Math.max(prevPage - 1, 1));
@@ -53,26 +53,20 @@ function FilteringNav({ selectedTab }) {
   return (
     <div className={classes.filteringContainer}>
       <div className={classes.navbar}>
-        <div style={{display: "flex", alignItems: "center" }}>
-      <img 
-        src={scriptImage}
-        style={{
-            width: '1rem',
-            height: '1rem',
-             marginRight: '8px' // Add margin for spacing between the image and the text
-        }} 
-        alt="Icon" // Add a description of the image for accessibility
-    />
-    {/* Display the selected tab text */}
-    <span style={{ color: 'darkblue' }}>
-        {selectedTab}
-    </span>
-    </div>
-    {/* Add pagination container */}
-    <div className={classes.paginationContainer}>
-        <span className={classes.paginationText}>
-            Showing 4 of 7 items
-        </span>
+        <div style={{ display: "flex", alignItems: "center" }}>
+          <img
+            src={scriptImage}
+            style={{
+              width: "1rem",
+              height: "1rem",
+              marginRight: "8px",
+            }}
+            alt="Icon"
+          />
+          <span style={{ color: "darkblue" }}>{selectedTab}</span>
+        </div>
+        <div className={classes.paginationContainer}>
+          <span className={classes.paginationText}>Showing 4 of 7 items</span>
           <IconButton
             size="small"
             onClick={handlePreviousPage}
@@ -80,10 +74,7 @@ function FilteringNav({ selectedTab }) {
           >
             {"<"}
           </IconButton>
-          <Button
-            variant="contained"
-            className={classes.paginationButton}
-          >
+          <Button variant="contained" className={classes.paginationButton}>
             {currentPage}
           </Button>
           <IconButton
