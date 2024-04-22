@@ -6,6 +6,7 @@ import Box from "../components2/Box";
 import { sampleData } from "../components2/Data";
 function NewComponent() {
   const [selectedTab, setSelectedTab] = useState("All");
+  
   const handleTabChange = (event, index) => {
     const tabNames = ["Today", "All", "New", "Flagged", "InProgress", "Last"];
     setSelectedTab(tabNames[index]);
@@ -19,7 +20,7 @@ function NewComponent() {
       >
         <AlertSummary />
         <AlertTabs value={selectedTab} handleChange={handleTabChange} />
-        <FilteringNav selectedTab={selectedTab} />
+     
         <Box selectedTab={selectedTab} sampleData={sampleData} />
       </div>
     </>

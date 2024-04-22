@@ -1,13 +1,12 @@
 import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import iwinboxImage from ".././assets/Images/iwinbox.jpeg";
-import outlineImage from ".././assets/Images/outline.png";
-import ultraImage from ".././assets/Images/ultra.png";
-import okImage from ".././assets/Images/OK.jpeg";
-import smaImage from ".././assets/Images/sma.webp";
-import lastImage from ".././assets/Images/last.png";
+import TodayImage from "../assets/Images/Today.png"
+import AllImage from '../assets/Images/All.png'
+import NewImage from "../assets/Images/New.png";
+import FlaggedImage from "../assets/Images/Flagged.png";
+import InProgressImage from "../assets/Images/InProgress.png";
+import LastImage from "../assets/Images/Last.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
 const useStyles = makeStyles(() => ({
   container: {
     display: "flex",
@@ -18,7 +17,7 @@ const useStyles = makeStyles(() => ({
     marginTop: "17px",
     overflowY: "scroll",
     "&::-webkit-scrollbar": {
-      display: "none", 
+      display: "none",
     },
   },
   tab: {
@@ -57,64 +56,59 @@ const useStyles = makeStyles(() => ({
     height: "54%",
     marginTop: "-5.3rem",
     marginLeft: "-1px",
-    backgroundColor: "#f0f0f0",
+    backgroundColor: "#F0F0F0",
     transition: "background-color 0.3s",
   },
   tabAnimation: {
     animation: "fadeIn 0.5s ease-in-out",
   },
 }));
-
 function AlertTabs({ value, handleChange }) {
   const classes = useStyles();
   const [activeTab, setActiveTab] = useState(value);
-
   const handleTabClick = (newTab, index) => {
     handleChange(null, index);
     setActiveTab(newTab);
   };
-
   const tabs = [
     {
       icon: null,
-      image: iwinboxImage,
+      image: TodayImage,
       label: "Today",
       count: "03",
     },
     {
       icon: null,
-      image: outlineImage,
+      image: AllImage,
       label: "All",
       count: "07",
     },
     {
       icon: null,
-      image: ultraImage,
+      image: NewImage,
       label: "New",
       count: "03",
     },
     {
       icon: null,
-      image: okImage,
+      image: FlaggedImage,
       label: "Flagged",
       count: "03",
     },
     {
       icon: null,
-      image: smaImage,
+      image: InProgressImage,
       label: "InProgress",
       count: "07",
     },
     {
       icon: null,
-      image: lastImage,
+      image: LastImage,
       label: "Last",
       count: "07",
     },
   ];
-
   const lineIndices = [1, 2, 3, 4, 5];
-
   return (
     <div className={classes.container}>
       {tabs.map((tab, index) => (
@@ -158,5 +152,4 @@ function AlertTabs({ value, handleChange }) {
     </div>
   );
 }
-
 export default AlertTabs;

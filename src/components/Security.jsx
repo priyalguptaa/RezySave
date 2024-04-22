@@ -4,9 +4,27 @@ import footage from "../assets/footage.png";
 import webcam from "../assets/webcam.png";
 import graph from "../assets/graph.png";
 import { Insights } from "./mockData/Insights";
-import { useState } from "react";
+import { useState,useEffect} from "react";
 import SecurityAlerts from "./SecurityAlerts";
 const Security = () => {
+
+  const [isSmallScreen, setIsSmallScreen] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsSmallScreen(window.innerWidth <= 768);
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    // Initial check for screen size
+    handleResize();
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+  
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 2;
   const startIndex = (currentPage - 1) * itemsPerPage;
@@ -18,11 +36,15 @@ const Security = () => {
 
   return (
     <>
-      <Accordion>
+      <Accordion  style={{    color: 'darkblue',
+            borderRadius: '8px',
+            marginRight: '1rem',
+            marginLeft: '1rem',}}>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel1-content"
           id="panel1-header"
+         
         >
           <div
             className="flex flex row justify-between"
@@ -31,7 +53,7 @@ const Security = () => {
             <div className="flex flex-row gap-[8px] order-1">
               <img className="w-6 h-6" src={webcam} alt="" />
 
-              <div className="text-blue-600">Security</div>
+              <div className="text-blue-800">Security</div>
             </div>
           </div>
         </AccordionSummary>
@@ -84,7 +106,7 @@ const Security = () => {
               className=" md:w-[100%] lg:w-[50%] sm:w-[100%]"
               id="alertsContainer"
             >
-              <div
+             {!isSmallScreen ? <div
                 id="heading"
                 className="flex items-center justify-center "
                 style={{ justifyContent: "space-between" }}
@@ -145,7 +167,69 @@ const Security = () => {
                     </button>
                   </div>
                 </div>
+              </div>   :
+              <div
+              id="heading"
+              className="flex items-center justify-center "
+              style={{ justifyContent: "space-between" }}
+            >
+              <div
+                id="alerts"
+                className="gap-[5px] flex flex-row ml-2 mt-2"
+                style={{ order: "1" }}
+              >
+                <img
+                  style={{ color: "blue" }}
+                  className="h-6 w-6 "
+                  src={graph}
+                  alt=""
+                />
+                <div
+                  id="noOfAlerts"
+                  className="w-[3.5rem] h-7 bg-white rounded flex justify-center"
+                >
+                  {" "}
+                  Alert:1
+                </div>
+                <div
+                  id="noOfInsights"
+                  className="w-[4.5rem] h-7 bg-white rounded flex justify-center"
+                >
+                  Insights:{Insights.length}
+                </div>
               </div>
+
+              <div className="flex mt-4 flex-col items-center " style={{ order: 2 }}>
+                {currentPage == 1 ? (
+                  <div className="mx-1 px-2 py-1 whitespace-nowrap">{`Showing ${
+                    Insights.slice(startIndex, endIndex).length + 1
+                  }  items`}</div>
+                ) : (
+                  <div className="mx-1 px-2 py-1 whitespace-nowrap">{`Showing ${
+                    Insights.slice(startIndex, endIndex).length
+                  }items`}</div>
+                )}
+
+                <div className="flex flex-row gap-1 items-center">
+                  <button
+                    disabled={currentPage === 1}
+                    onClick={() => handlePageChange(currentPage - 1)}
+                    className="mx-1 px-2 py-1 rounded-full bg-gray-200 hover:bg-gray-400"
+                  >
+                    &lt;
+                  </button>
+                  <div>{currentPage}</div>
+                  <button
+                    disabled={currentPage === totalPages}
+                    onClick={() => handlePageChange(currentPage + 1)}
+                    className="mx-1 px-2 py-1 rounded-full bg-gray-200 hover:bg-gray-400"
+                  >
+                    &gt;
+                  </button>
+                </div>
+              </div>
+            </div> 
+              }
 
               <ul
                 id="list"

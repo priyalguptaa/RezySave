@@ -26,6 +26,10 @@
 
 .animation-slide-left {
   animation: slideLeft 1s ease-in-out;
-  z-index: -1;
 }
+
+#alertButtons button {
+  z-index: 1; 
+}
+
 

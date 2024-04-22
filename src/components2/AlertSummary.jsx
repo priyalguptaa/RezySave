@@ -7,7 +7,7 @@ const useStyles = makeStyles(() => ({
     marginTop: "1rem",
     backgroundColor: "darkblue",
     borderRadius: "0.7rem",
-    marginLeft: "1rem",
+    
     width: "100%",
   },
   toolbar: {

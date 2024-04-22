@@ -10,7 +10,8 @@ import SearchIcon from "@mui/icons-material/Search";
 import MarkChatUnreadIcon from "@mui/icons-material/MarkChatUnread";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import HomeIcon from "@mui/icons-material/Home";
-
+import { Button } from "@material-ui/core";
+import {useState, useEffect } from "react";
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
 
@@ -51,7 +52,23 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 export default function Navbar() {
-  const isSmallScreen = window.innerWidth < 768;
+  const [isSmallScreen, setIsSmallScreen] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsSmallScreen(window.innerWidth <= 768);
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    // Initial check for screen size
+    handleResize();
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar
@@ -62,6 +79,7 @@ export default function Navbar() {
           position: "fixed",
           top: 0,
           height: "60px",
+          
         }}
       >
         <Toolbar>
@@ -83,38 +101,58 @@ export default function Navbar() {
             Home
           </Typography>
           <Box sx={{ flexGrow: 1 }} />
-          <Box sx={{ display: { xs: "flex", md: "flex" } }}>
+          <Box sx={{ display: { xs: "flex", md: "flex" ,alignItems:'center'} }}>
             {isSmallScreen ? (
-              <div className="relative">
-                <input
-                  type="text"
-                  placeholder="Search..."
-                  className="pl-8 pr-4 py-2 rounded-full border border-gray-300 focus:outline-none focus:border-blue-500"
-                />
+             <button>
+               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+              <path strokeLinecap="round" strokeLinejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+            </svg>
+             </button>
+            
+            ) : (
+              <Search>
+              <SearchIconWrapper>
+                <SearchIcon />
+              </SearchIconWrapper>
+              <StyledInputBase
+                placeholder="Search"
+                inputProps={{ "aria-label": "search" }}
+              />
+              <Button
+                variant="contained"
+                style={{
+                  background: "white",
+                  color: "black",
+                  minWidth: "auto",
+                  padding: "1px 10px",
+                  marginRight: "1px",
+                }}
+              >
+                All
+              </Button>
+              <IconButton
+                size="small"
+                edge="start"
+                color="inherit"
+                aria-label="filter"
+                style={{ marginLeft: "10px" }}
+              >
                 <svg
-                  className="absolute left-2 top-1/2 transform -translate-y-1/2 text-gray-500 h-5 w-5"
-                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
                   fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={1.5}
                   stroke="currentColor"
+                  className="w-6 h-6"
                 >
                   <path
                     strokeLinecap="round"
                     strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M21 21l-5.2-5.2m-.8-.8a8 8 0 10-4.8 4.8M15 9a6 6 0 11-12 0 6 6 0 0112 0z"
-                  ></path>
+                    d="M10.5 6h9.75M10.5 6a1.5 1.5 0 1 1-3 0m3 0a1.5 1.5 0 1 0-3 0M3.75 6H7.5m3 12h9.75m-9.75 0a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m-3.75 0H7.5m9-6h3.75m-3.75 0a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m-9.75 0h9.75"
+                  />
                 </svg>
-              </div>
-            ) : (
-              <Search>
-                <SearchIconWrapper>
-                  <SearchIcon />
-                </SearchIconWrapper>
-                <StyledInputBase
-                  placeholder="Search…"
-                  inputProps={{ "aria-label": "search" }}
-                />
-              </Search>
+              </IconButton>
+            </Search>
             )}
             <IconButton size="medium" color="inherit">
               <Badge color="error">
