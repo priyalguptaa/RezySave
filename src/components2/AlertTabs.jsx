@@ -7,6 +7,7 @@ import okImage from ".././assets/Images/OK.jpeg";
 import smaImage from ".././assets/Images/sma.webp";
 import lastImage from ".././assets/Images/last.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 const useStyles = makeStyles(() => ({
   container: {
     display: "flex",
@@ -16,6 +17,9 @@ const useStyles = makeStyles(() => ({
     color: "black",
     marginTop: "17px",
     overflowY: "scroll",
+    "&::-webkit-scrollbar": {
+      display: "none", 
+    },
   },
   tab: {
     display: "flex",
@@ -23,7 +27,7 @@ const useStyles = makeStyles(() => ({
     justifyContent: "center",
     padding: "16px",
     cursor: "pointer",
-    transition: "background-color 2s, color 2s",
+    transition: "background-color 0.5s",
     width: "310px",
     height: "88px",
     marginTop: "2rem",
